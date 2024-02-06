@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  api:
+    image: jobscrape_api
+    container_name: jobscrape_api
+    networks:
+      - localnetwork
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+
+networks:
+  localnetwork:

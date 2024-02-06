@@ -25,6 +25,7 @@ QueryJobsModel = api.model('QueryJobsModel', {
 @api.route('/<id>')
 class GetJobById(Resource):
     def get(self, id):
+        print("id", id)
         return get_job_by_id(id), 200
 
 @api.route('/')
