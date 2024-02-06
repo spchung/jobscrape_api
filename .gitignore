@@ -3,3 +3,7 @@ __pycache__/
 poetry.lock
 .envrc
 .env
+.vscode
+/bin
+/lib
+/include

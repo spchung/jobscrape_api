@@ -2,6 +2,8 @@ import importlib, os
 from flask import Flask, url_for
 from flask_restx import Api
 from shared.connection import db
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 class MyApi(Api):
@@ -14,12 +16,14 @@ class MyApi(Api):
 swaggerApi = MyApi(
     app,
     version='1.0',
-    title='Example API',
-    description='Whatever you want'
+    title='Job Scrapper API',
+    description='Expose Job search'
 )
 
 module_mapper = {
-    'example': 'example'
+    'example': 'example',
+    'jobs': 'jobs',
+    'search': 'search'
 }
 
 sorted_moduleMapper = {}
@@ -33,7 +37,7 @@ for mod in sorted_moduleMapper:
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
