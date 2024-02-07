@@ -1,11 +1,16 @@
 import importlib, os
 from flask import Flask, url_for
 from flask_restx import Api
+from flask_cors import CORS, cross_origin
 from shared.connection import db
 from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app, resources={r"/v1/*": {"origins": "*"}})
+
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 class MyApi(Api):
     @property
     def specs_url(self):
