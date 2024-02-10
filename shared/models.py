@@ -58,3 +58,16 @@ class JobEmbedding(db.Model):
             "title_emb": self.title_emb,
             "description_emb": self.description_emb
         }
+
+class JobEmbeddingL12(db.Model):
+    __tablename__ = "job_embeddings_l12"
+    job_id = Column(String, primary_key=True, index=True)
+    title_emb = Column(Vector(384))
+    description_emb = Column(Vector(384))
+
+    def to_dict(self):
+        return {
+            "job_id": self.job_id,
+            "title_emb": self.title_emb,
+            "description_emb": self.description_emb
+        }

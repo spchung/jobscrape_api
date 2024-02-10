@@ -35,7 +35,6 @@ sorted_moduleMapper = {}
 for k, v in sorted(module_mapper.items(), key=lambda x: x[0]):
     sorted_moduleMapper[k] = v
 
-
 for mod in sorted_moduleMapper:
     tmp = importlib.import_module("api." + mod + '.endpoint')
     swaggerApi.add_namespace(tmp.api, path='/v1/'+module_mapper[mod])
